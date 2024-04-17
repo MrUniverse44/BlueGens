@@ -3,7 +3,6 @@ package me.blueslime.bluegens.modules.generators.hologram;
 import me.blueslime.bluegens.modules.generators.generator.Generator;
 import me.blueslime.utilitiesapi.text.TextUtilities;
 import org.bukkit.Location;
-import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -27,24 +26,21 @@ public class GeneratorHologram {
 
     public void spawn(Generator generator) {
         int amount = 0;
-        Block block = generator.getUpperBlock();
+        int size = lineList.size();
 
-        if (block == null) {
-            return;
-        }
-
-        Location location = block.getLocation();
+        Location location = generator.getCoordinate().getHologramLocation();
 
         for (String line : lineList) {
             Location lineLocation = location.clone();
 
-            lineLocation.setY(location.getY() + HOLOGRAM_DISTANCE * HOLOGRAM_DISTANCE);
-
-            if (amount > 0) {
-                lineLocation = armorStandList.get(amount - 1).getLocation();
+            if (amount == 0) {
+                double best = (HOLOGRAM_DISTANCE + 0.1) * size;
+                lineLocation.setY(best);
+            } else {
+                double max = (HOLOGRAM_DISTANCE + 0.2) * size;
+                double remover = HOLOGRAM_DISTANCE * amount;
+                lineLocation.setY(max - remover);
             }
-
-            lineLocation.setY(lineLocation.getY() - HOLOGRAM_DISTANCE);
 
             ArmorStand armorStand = generate(line, lineLocation);
 
