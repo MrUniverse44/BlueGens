@@ -73,6 +73,7 @@ public class Generators extends PluginModule {
                 int spawnRate = k * 20;
 
                 v.runTaskTimer(spawnRate, 0L);
+                plugin.getLogger().info("Created task for generators with interval of " + k + " seconds (" + spawnRate + ")");
             }
         );
 
@@ -140,6 +141,8 @@ public class Generators extends PluginModule {
                 if (task == null) {
                     continue;
                 }
+
+                plugin.getLogger().info("Registered a new generator in task with spawn rate: " + level.getSpawnRate());
 
                 task.getGenerators().add(generator);
             }
@@ -347,9 +350,11 @@ public class Generators extends PluginModule {
         if (file.exists()) {
             return YamlConfiguration.loadConfiguration(file);
         } else {
-            PluginConsumer.process(
-                file::createNewFile
-            );
+            if (file.getParentFile().mkdirs()) {
+                PluginConsumer.process(
+                    file::createNewFile
+                );
+            }
             return new YamlConfiguration();
         }
     }
