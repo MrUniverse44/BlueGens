@@ -7,6 +7,10 @@ import me.blueslime.bluegens.modules.generators.generator.Generator;
 import me.blueslime.bluegens.modules.generators.level.GeneratorLevel;
 import me.blueslime.bluegens.modules.listeners.api.GeneratorCorruptEvent;
 import me.blueslime.bluegens.modules.tasks.task.Task;
+import me.blueslime.bluegens.modules.utils.list.ReturnableArrayList;
+import me.blueslime.utilitiesapi.item.ItemWrapper;
+import me.blueslime.utilitiesapi.text.TextReplacer;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
@@ -58,11 +62,71 @@ public class GenTask extends Task {
 
             double generatedChance = generateChance();
 
+            Economy economy = plugin.getEconomy();
+
             for (GeneratorDrop drop : level.getDroppedItems()) {
                 if (executeProbabilityCheck(drop.getChance(), generatedChance)) {
+                    ItemWrapper original = drop.getWrapper();
+                    ItemWrapper wrapper = original.copy();
+
+                    String displayName = level.getDisplayName();
+
+                    String uCost = economy != null ? economy.format(level.getNextCost()) : String.valueOf(level.getNextCost());
+                    String rCost = economy != null ? economy.format(level.getCorruptionCost()) : String.valueOf(level.getCorruptionCost());
+                    String dCost = economy != null ? economy.format(drop.getPrice()) : String.valueOf(drop.getPrice());
+
+                    TextReplacer replacer = TextReplacer.builder()
+                        .replace(
+                            "<generator_displayname>",
+                            displayName
+                        ).replace(
+                            "<generator_display_name>",
+                            displayName
+                        ).replace(
+                            "<display_name>",
+                            displayName
+                        ).replace(
+                            "<displayname>",
+                            displayName
+                        ).replace(
+                            "<generator_time>",
+                            String.valueOf(level.getSpawnRate())
+                        ).replace(
+                            "<time>",
+                            String.valueOf(level.getSpawnRate())
+                        ).replace(
+                            "<generator_upgrade>",
+                            uCost
+                        ).replace(
+                            "<upgrade>",
+                            uCost
+                        ).replace(
+                            "<generator_repair>",
+                            rCost
+                        ).replace(
+                            "<repair>",
+                            rCost
+                        ).replace(
+                            "<drop_price>",
+                            dCost
+                        ).replace(
+                            "<price>",
+                            dCost
+                        );
+
+                    wrapper.setName(
+                        replacer.apply(original.getName())
+                    );
+
+                    wrapper.setLore(
+                        new ReturnableArrayList<>(original.getLore()).replace(
+                            replacer::apply
+                        )
+                    );
+
                     world.dropItemNaturally(
                         block.getLocation(),
-                        drop.getWrapper().copy().getItem()
+                        wrapper.getItem()
                     );
                 }
             }

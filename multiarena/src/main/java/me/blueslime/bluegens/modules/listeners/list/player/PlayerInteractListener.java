@@ -8,10 +8,12 @@ import me.blueslime.bluegens.modules.listeners.api.GeneratorRepairEvent;
 import me.blueslime.bluegens.modules.listeners.api.GeneratorUpgradeEvent;
 import me.blueslime.bluegens.modules.listeners.list.PluginListener;
 import me.blueslime.bluegens.modules.storage.player.GenPlayer;
+import me.blueslime.bluegens.modules.utils.list.ReturnableArrayList;
 import me.blueslime.bluegens.modules.utils.player.PlayerUtilities;
 import me.blueslime.utilitiesapi.commands.sender.Sender;
 import me.blueslime.utilitiesapi.item.ItemWrapper;
 import me.blueslime.utilitiesapi.text.TextReplacer;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
@@ -91,8 +93,58 @@ public class PlayerInteractListener extends PluginListener {
                 );
                 return;
             }
+            ItemWrapper original = generator.getLevel().getItem();
+            ItemWrapper item = original.copy().addStringNBT("bluegens-corrupt-phase," + generator.isCorrupted());
 
-            ItemWrapper item = generator.getLevel().getItem().copy().addStringNBT("bluegens-corrupt-phase," + generator.isCorrupted());
+            String displayName = generator.getLevel().getDisplayName();
+
+            Economy economy = plugin.getEconomy();
+
+            String uCost = economy != null ? economy.format(generator.getLevel().getNextCost()) : String.valueOf(generator.getLevel().getNextCost());
+            String rCost = economy != null ? economy.format(generator.getLevel().getCorruptionCost()) : String.valueOf(generator.getLevel().getCorruptionCost());
+
+            TextReplacer replacer = TextReplacer.builder()
+                .replace(
+                    "<generator_displayname>",
+                    displayName
+                ).replace(
+                    "<generator_display_name>",
+                    displayName
+                ).replace(
+                    "<display_name>",
+                    displayName
+                ).replace(
+                    "<displayname>",
+                    displayName
+                ).replace(
+                    "<generator_time>",
+                    String.valueOf(generator.getLevel().getSpawnRate())
+                ).replace(
+                    "<time>",
+                    String.valueOf(generator.getLevel().getSpawnRate())
+                ).replace(
+                    "<generator_upgrade>",
+                    uCost
+                ).replace(
+                    "<upgrade>",
+                    uCost
+                ).replace(
+                    "<generator_repair>",
+                    rCost
+                ).replace(
+                    "<repair>",
+                    rCost
+                );
+
+            item.setName(
+                replacer.apply(original.getName())
+            );
+
+            item.setLore(
+                new ReturnableArrayList<>(original.getLore()).replace(
+                    replacer::apply
+                )
+            );
 
             player.getInventory().addItem(item.getItem());
             plugin.getModule(Generators.class).removeGenerator(generator, player);

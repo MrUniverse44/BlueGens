@@ -7,6 +7,7 @@
 # Generator list:
 generators:
   hay_generator:
+    display-name: "&aHay Generator"
     # Upgrade settings
     upgrade:
       # If this is the max level, please change it to 'MAX_LEVEL'
@@ -59,6 +60,7 @@ generators:
           - "&fPrice: &c$<drop_price>"
           - " "
   melon_generator:
+    display-name: "&eMelon Generator"
     # Upgrade settings
     upgrade:
       # If this is the max level, please change it to 'MAX_LEVEL'
@@ -111,6 +113,7 @@ generators:
           - "&fPrice: &c$<price>"
           - " "
   pumpkin_generator:
+    display-name: "&6Pumpkin Generator"
     # Upgrade settings
     upgrade:
       # If this is the max level, please change it to 'MAX_LEVEL'

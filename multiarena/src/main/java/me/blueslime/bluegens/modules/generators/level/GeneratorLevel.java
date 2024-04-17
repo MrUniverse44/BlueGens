@@ -2,6 +2,7 @@ package me.blueslime.bluegens.modules.generators.level;
 
 import me.blueslime.bluegens.modules.generators.drop.GeneratorDrop;
 import me.blueslime.utilitiesapi.item.ItemWrapper;
+import me.blueslime.utilitiesapi.text.TextUtilities;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
@@ -21,6 +22,8 @@ public class GeneratorLevel {
 
     private ItemWrapper item;
 
+    private String displayName;
+
     private final List<GeneratorDrop> dropList = new ArrayList<>();
 
     public GeneratorLevel(ConfigurationSection configuration, String id) {
@@ -30,6 +33,7 @@ public class GeneratorLevel {
     }
 
     private void loadItems(ConfigurationSection configuration) {
+        this.displayName = configuration.getString("display-name", id.replace("_", " ").replace("-", " "));
         this.corruptionPhase = configuration.getBoolean("corrupt.enabled", true);
         this.corruptionChance = configuration.getDouble("corrupt.chance", 0.35);
         this.corruptionCost = configuration.getInt("corrupt.repair-cost", 4500);
@@ -59,6 +63,10 @@ public class GeneratorLevel {
                 );
             }
         }
+    }
+
+    public String getDisplayName() {
+        return TextUtilities.colorize(displayName != null ? displayName : id);
     }
 
     public int getSpawnRate() {

@@ -3,8 +3,12 @@ package me.blueslime.bluegens.modules.commands;
 import me.blueslime.bluegens.BlueGens;
 import me.blueslime.bluegens.modules.generators.Generators;
 import me.blueslime.bluegens.modules.generators.level.GeneratorLevel;
+import me.blueslime.bluegens.modules.utils.list.ReturnableArrayList;
 import me.blueslime.utilitiesapi.commands.SimpleCommand;
 import me.blueslime.utilitiesapi.commands.sender.Sender;
+import me.blueslime.utilitiesapi.item.ItemWrapper;
+import me.blueslime.utilitiesapi.text.TextReplacer;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.entity.Player;
 
 public class Command extends SimpleCommand<BlueGens> {
@@ -99,7 +103,61 @@ public class Command extends SimpleCommand<BlueGens> {
 
             if (getPlugin().getEconomy().has(targetPlayer, price)) {
                 getPlugin().getEconomy().withdrawPlayer(targetPlayer, price);
-                targetPlayer.getInventory().addItem(level.getItemStack());
+
+                ItemWrapper original = level.getItem();
+                ItemWrapper wrapper = original.copy();
+
+                String displayName = level.getDisplayName();
+
+                Economy economy = getPlugin().getEconomy();
+
+                String uCost = economy != null ? economy.format(level.getNextCost()) : String.valueOf(level.getNextCost());
+                String rCost = economy != null ? economy.format(level.getCorruptionCost()) : String.valueOf(level.getCorruptionCost());
+
+                TextReplacer replacer = TextReplacer.builder()
+                    .replace(
+                        "<generator_displayname>",
+                        displayName
+                    ).replace(
+                        "<generator_display_name>",
+                        displayName
+                    ).replace(
+                        "<display_name>",
+                        displayName
+                    ).replace(
+                        "<displayname>",
+                        displayName
+                    ).replace(
+                        "<generator_time>",
+                        String.valueOf(level.getSpawnRate())
+                    ).replace(
+                        "<time>",
+                        String.valueOf(level.getSpawnRate())
+                    ).replace(
+                        "<generator_upgrade>",
+                        uCost
+                    ).replace(
+                        "<upgrade>",
+                        uCost
+                    ).replace(
+                        "<generator_repair>",
+                        rCost
+                    ).replace(
+                        "<repair>",
+                        rCost
+                    );
+
+                wrapper.setName(
+                    replacer.apply(original.getName())
+                );
+
+                wrapper.setLore(
+                    new ReturnableArrayList<>(original.getLore()).replace(
+                        replacer::apply
+                    )
+                );
+
+                targetPlayer.getInventory().addItem(wrapper.getItem());
             }
         }
     }
