@@ -1,6 +1,10 @@
-name: StylizedRFTB
+name: BlueGens
 version: ${project.version}
-main: me.blueslime.bluegens.modules.StylizedRFTB
+main: me.blueslime.bluegens.BlueGens
+api-version: 1.13
 authors: [ JustJustin ]
 author: JustJustin
 description: ${project.description}
+commands:
+  bluegens:
+    description: Main Command of the plugin
