@@ -10,6 +10,7 @@ import me.blueslime.bluegens.modules.listeners.list.PluginListener;
 import me.blueslime.bluegens.modules.storage.player.GenPlayer;
 import me.blueslime.bluegens.modules.utils.list.ReturnableArrayList;
 import me.blueslime.bluegens.modules.utils.player.PlayerUtilities;
+import me.blueslime.bluegens.modules.utils.reflect.PluginReflect;
 import me.blueslime.utilitiesapi.commands.sender.Sender;
 import me.blueslime.utilitiesapi.item.ItemWrapper;
 import me.blueslime.utilitiesapi.text.TextReplacer;
@@ -67,6 +68,9 @@ public class PlayerInteractListener extends PluginListener {
         String action = event.getAction().toString().toLowerCase(Locale.ENGLISH).replace("-", " ");
 
         if (action.contains("left")) {
+            if (PluginReflect.isCancelled(event)) {
+                return;
+            }
             event.setCancelled(true);
 
             if (!generator.isOwner(genPlayer)) {
@@ -152,8 +156,11 @@ public class PlayerInteractListener extends PluginListener {
         }
 
         // (upgrade)
-        if (action.contains("right")) {
+        if (action.contains("right") && action.contains("block")) {
             if (player.isSneaking()) {
+                return;
+            }
+            if (PluginReflect.isCancelled(event)) {
                 return;
             }
             if (!generator.isOwner(genPlayer)) {
