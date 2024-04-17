@@ -1,0 +1,163 @@
+#
+# Generator settings
+#
+# * Spawn-rate in seconds
+#
+# Generator list:
+generators:
+  hay_generator:
+    # Upgrade settings
+    upgrade:
+      # If this is the max level, please change it to 'MAX_LEVEL'
+      next: melon_generator
+      # Cost to upgrade
+      cost: 5000
+    # Time to spawn items (In Seconds)
+    spawn-rate: 20
+    # Corrupt a specified generator
+    corrupt:
+      # Toggle this system
+      enabled: true
+      # Cost to fix it
+      repair-cost: 4500
+      # Chance for corruption
+      chance: 0.35
+    # Item Settings
+    item:
+      material: HAY_BLOCK
+      name: "&aHay Generator"
+      lore:
+        - "&8Upgradeable Generator"
+        - " "
+        - "&bInformation"
+        - "&f Time: &c<time>"
+        - "&f Upgrade: &c$<upgrade>"
+        - "&f Repair: &c$<repair>"
+        - " "
+        - "&7Put this item in the ground"
+    # Drop Settings
+    drops:
+      hay-block:
+        material: "skin:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjFmODAyNTFiZGNiZTE0YmYzNjFkNGY2M2UwZmYzOTE2ZWZjNzNmZGIzYjI3MTRkNzcyODdiNTU1MmYwNTE0YiJ9fX0="
+        chance: 70
+        price: 400
+        name: "&aHay Drop"
+        lore:
+          - "&8Drop"
+          - " "
+          - "&fPrice: &c$<price>"
+          - " "
+      wheat:
+        material: "skin:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg2YmFkYjBkOTEzYjM5MWZiNDhkNzc3NmMzNzhjYTNmNGIyZGJlNzI0NTM0MDM0ZjM1MGNjZDM4ZjkwNDQ3MyJ9fX0="
+        chance: 30
+        price: 800
+        name: "&aWheat Drop"
+        lore:
+          - "&8Drop"
+          - " "
+          - "&fPrice: &c$<price>"
+          - " "
+  melon_generator:
+    # Upgrade settings
+    upgrade:
+      # If this is the max level, please change it to 'MAX_LEVEL'
+      next: pumpkin_generator
+      # Cost to upgrade
+      cost: 8000
+    # Time to spawn items (In Seconds)
+    spawn-rate: 20
+    # Corrupt a specified generator
+    corrupt:
+      # Toggle this system
+      enabled: true
+      # Cost to fix it
+      repair-cost: 4500
+      # Chance for corruption
+      chance: 0.95
+    # Item Settings
+    item:
+      material: HAY_BLOCK
+      name: "&aPumpkin Generator"
+      lore:
+        - "&8Upgradeable Generator"
+        - " "
+        - "&bInformation"
+        - "&f Time: &c<time>"
+        - "&f Upgrade: &c$<upgrade>"
+        - "&f Repair: &c$<repair>"
+        - " "
+        - "&7Put this item in the ground"
+    # Drop Settings
+    drops:
+      hay-block:
+        material: "skin:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjFmODAyNTFiZGNiZTE0YmYzNjFkNGY2M2UwZmYzOTE2ZWZjNzNmZGIzYjI3MTRkNzcyODdiNTU1MmYwNTE0YiJ9fX0="
+        chance: 70
+        price: 400
+        name: "&aHay Drop"
+        lore:
+          - "&8Drop"
+          - " "
+          - "&fPrice: &c$<price>"
+          - " "
+      wheat:
+        material: "skin:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg2YmFkYjBkOTEzYjM5MWZiNDhkNzc3NmMzNzhjYTNmNGIyZGJlNzI0NTM0MDM0ZjM1MGNjZDM4ZjkwNDQ3MyJ9fX0="
+        chance: 30
+        price: 800
+        name: "&aWheat Drop"
+        lore:
+          - "&8Drop"
+          - " "
+          - "&fPrice: &c$<price>"
+          - " "
+  pumpkin_generator:
+    # Upgrade settings
+    upgrade:
+      # If this is the max level, please change it to 'MAX_LEVEL'
+      next: MAX_LEVEL
+      # Cost to upgrade (If the next level is 'MAX_LEVEL' this option will be ignored.)
+      cost: 10000
+    # Time to spawn items (In Seconds)
+    spawn-rate: 20
+    # Corrupt a specified generator
+    corrupt:
+      # Toggle this system
+      enabled: true
+      # Cost to fix it
+      repair-cost: 4500
+      # Chance for corruption
+      chance: 0.95
+    # Item Settings
+    item:
+      material: HAY_BLOCK
+      name: "&aPumpkin Generator"
+      lore:
+        - "&8Upgradeable Generator"
+        - " "
+        - "&bInformation"
+        - "&f Time: &c<time>"
+        - "&f Upgrade: &c$<upgrade>"
+        - "&f Repair: &c$<repair>"
+        - " "
+        - "&7Put this item in the ground"
+    # Drop Settings
+    drops:
+      hay-block:
+        material: "skin:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjFmODAyNTFiZGNiZTE0YmYzNjFkNGY2M2UwZmYzOTE2ZWZjNzNmZGIzYjI3MTRkNzcyODdiNTU1MmYwNTE0YiJ9fX0="
+        chance: 70
+        price: 400
+        name: "&aHay Drop"
+        lore:
+          - "&8Drop"
+          - " "
+          - "&fPrice: &c$<price>"
+          - " "
+      wheat:
+        material: "skin:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjg2YmFkYjBkOTEzYjM5MWZiNDhkNzc3NmMzNzhjYTNmNGIyZGJlNzI0NTM0MDM0ZjM1MGNjZDM4ZjkwNDQ3MyJ9fX0="
+        chance: 30
+        price: 800
+        name: "&aWheat Drop"
+        lore:
+          - "&8Drop"
+          - " "
+          - "&fPrice: &c$<price>"
+          - " "

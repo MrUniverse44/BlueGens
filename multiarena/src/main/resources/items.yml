@@ -1,0 +1,142 @@
+#
+# Created by: JustJustin
+# SpigotMC Link: https://www.spigotmc.org/resources/88817/
+#
+# Inventories configuration
+inventories:
+  # Lobby section
+  lobby-inventory:
+    # Enable the lobby inventory
+    enabled: true
+    # Items of this section
+    items:
+      game-selector:
+        material: PAPER
+        name: "&aGame Selector &7(Right Click)"
+        slot: 0
+        lore:
+          - "&eGuardianRFTB"
+        actions:
+          - "[game] selector"
+      game-shop:
+        material: EMERALD
+        name: "&aRFTB Shop"
+        slot: 4
+        lore:
+          - "&eGuardianRFTB"
+        actions:
+          - "[game] shop"
+      exit:
+        material: BED
+        name: "&aGo to the hub"
+        slot: 8
+        lore:
+          - "&eGuardianRFTB"
+        actions:
+          - "[server] hub"
+  # In-Game section
+  in-game-inventory:
+    # Enable the in-game inventory
+    enabled: true
+    # Checkpoint item
+    checkpoint-back:
+      material: NETHER_STAR
+      name: "&b&lCheckpoint Back"
+      lore:
+        - "&eGuardianRFTB"
+    # Items of this section
+    items:
+      runner-kits:
+        exclusive: FOR_RUNNERS
+        material: PAPER
+        name: "&aRunner Kits"
+        slot: 0
+        lore:
+          - "&eGuardianRFTB"
+        actions:
+          - "[game] kits:runner"
+      beast-kit:
+        exclusive: FOR_BEASTS
+        material: PAPER
+        name: "&aBeast Kits"
+        slot: 0
+        lore:
+          - "&eGuardianRFTB"
+        actions:
+          - "[game] kits:beast"
+      killer-kit:
+        exclusive: FOR_KILLERS
+        item: PAPER
+        name: "&aKiller Kits"
+        slot: 0
+        lore:
+          - "&eGuardianRFTB"
+        actions:
+          - "[game] kits:killer"
+      exit:
+        material: BED
+        name: "&aLeave"
+        slot: 0
+        lore:
+          - "&eGuardianRFTB"
+  # Spectator section
+  spectator-inventory:
+    compass:
+      material: COMPASS
+      name: "&aSpectate &7(Right Click)"
+      slot: 0
+      lore:
+        - "&eGuardianRFTB"
+    settings:
+      material: COMPARATOR
+      name: '&e&lSpectator Settings &7(Right Click)'
+      slot: 4
+      lore:
+        - "&eGuardianRFTB"
+    play-again:
+      toggle: true
+      item: PAPER
+      name: '&b&lPlay Again &7(Right Click)'
+      slot: 7
+      lore:
+        - "&eGuardianRFTB"
+    leave:
+      toggle: true
+      item: RED_BED
+      name: '&c&lReturn to the lobby &7(Right Click)'
+      slot: 8
+      lore:
+        - "&eGuardianRFTB"
+  default-beast-inventory:
+    Sword:
+      item: DIAMOND_SWORD
+      name: '&eBeast Sword'
+      lore:
+        - '&7Here your lore'
+        - '&eplay.servername.net'
+      slot: 0
+  default-beast-armor:
+    Helmet:
+      item: DIAMOND_HELMET
+      name: '&eBeast Helmet'
+      lore:
+        - '&7Here your lore'
+        - '&eplay.servername.net'
+    Chestplate:
+      item: DIAMOND_CHESTPLATE
+      name: '&eBeast Helmet'
+      lore:
+        - '&7Here your lore'
+        - '&eplay.servername.net'
+    Leggings:
+      item: DIAMOND_LEGGINGS
+      name: '&eBeast Leggings'
+      lore:
+        - '&7Here your lore'
+        - '&eplay.servername.net'
+    Boots:
+      item: DIAMOND_BOOTS
+      name: '&eBeast Boots'
+      lore:
+        - '&7Here your lore'
+        - '&eplay.servername.net'

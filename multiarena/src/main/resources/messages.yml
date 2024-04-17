@@ -1,0 +1,56 @@
+messages:
+  not-owner:
+    - " "
+    - "&c&lHEY! &fYou are not the owner of this generator"
+    - " "
+  inventory-full-to-get-item:
+    - " "
+    - "&4&lINVENTORY&f is &cfull&f you can't get your generator item while your inventory is full."
+    - " "
+  max-generators:
+    - " "
+    - "&e&l¡HEY! &cLimit Reached! &fYou already have all your max generators allowed <current>/<max>"
+    - " "
+  placed-generator:
+    - " "
+    - "&a&lNEW GENERATOR ADDED&f Generator of <generator_displayname> placed. &7(<current>/<max>)"
+    - " "
+  already-in-max-level:
+    - " "
+    - "&c&lHEY!&f This generator is already in the max level available."
+    - " "
+  can-not-find-level-id:
+    - " "
+    - "&cGenerator level for this upgrade doesn't exists, please contact a server admin to get help!"
+    - " "
+  economy-provider-error:
+    - " "
+    - "&4&lERROR!&f Can't find a economy provider, the plugin can't execute this action"
+    - " "
+  no-player-economy-upgrade:
+    - " "
+    - "&6&lNOT ENOUGH BALANCE!&f You don't have enough money to upgrade this generator. This upgrade cost: &e<generator_upgrade>&f, and you have &e<balance>"
+    - " "
+  no-player-economy-repair:
+    - " "
+    - "&6&lNOT ENOUGH BALANCE!&f You don't have enough money to repair this generator. This repair cost: &e<generator_upgrade>&f, and you have &e<balance>"
+    - " "
+  generator-updated:
+    - " "
+    - "&b&lNEW LEVEL! &fThis generator has been upgraded successfully!"
+    - " "
+  generator-repaired:
+    - "&aThis generator has been fixed"
+command:
+  no-arguments:
+    - " "
+    - "&a/bluegens buy &7to buy a new generator"
+    - " "
+  no-enough-money: "&cCan't buy a generator because you don't have enough money."
+  no-player-found: "&cThis player is not online."
+hologram:
+  corrupt:
+    enabled: true
+    lines:
+      - "&c&lCORRUPTED GENERATOR"
+      - "&fClick to fix it!"

@@ -1,0 +1,28 @@
+# Gems plugin
+#
+# Settings section
+# MultiGens MiniGame for LatinPlay
+settings:
+  # This is the first level for the generator
+  first-generator-level: hay_generator
+  # Price of the first generator level
+  first-generator-level-price: 2500
+  # Max generators in order
+  #
+  # <lower rank>    |
+  #                \|/
+  # <upper rank>    V
+  #
+  max:
+    # This will not require permissions
+    default: 9
+    # If you want to add a custom max amount for another rank
+    # You should add a new key with a new value
+    # and give the permission 'bluegens.max.generators.<key>'
+    # Permission for this default extra-key: bluegens.max.generators.vip
+    vip: 12
+    # If you want to add a custom max amount for another rank
+    # You should add a new key with a new value
+    # and give the permission 'bluegens.max.generators.<key>'
+    # Permission for this default extra-key: bluegens.max.generators.admin
+    admin: 15
