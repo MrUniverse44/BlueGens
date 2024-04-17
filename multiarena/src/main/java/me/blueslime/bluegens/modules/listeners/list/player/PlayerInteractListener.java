@@ -22,6 +22,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -52,6 +53,12 @@ public class PlayerInteractListener extends PluginListener {
     public void on(PlayerInteractEvent event) {
         if (event.getClickedBlock() == null) {
             return;
+        }
+
+        if (PluginReflect.doubleHand()) {
+            if (event.getHand() != EquipmentSlot.HAND) {
+                return;
+            }
         }
 
         Block block = event.getClickedBlock();

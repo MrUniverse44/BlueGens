@@ -6,13 +6,22 @@ import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.lang.reflect.Method;
+
 public class PluginReflect {
     private static PluginReflect REFLECT = null;
     private boolean useMethods = true;
     private boolean handMethod = true;
+    private boolean hands;
 
+    @SuppressWarnings("ConstantValue")
     private PluginReflect() {
-
+        try {
+            Method method = PlayerInteractEvent.class.getDeclaredMethod("getHand");
+            hands = method != null;
+        } catch (Exception ignored) {
+            hands = false;
+        }
     }
 
     public static ItemStack getItemInHand(Player player) {
@@ -30,6 +39,10 @@ public class PluginReflect {
         return get().isCancel(event);
     }
 
+    public static boolean doubleHand() {
+        return get().checkHands();
+    }
+
     @SuppressWarnings("deprecation")
     private boolean isCancel(PlayerInteractEvent event) {
         if (useMethods) {
@@ -40,6 +53,10 @@ public class PluginReflect {
             }
         }
         return event.isCancelled();
+    }
+
+    private boolean checkHands() {
+        return hands;
     }
 
     @SuppressWarnings("deprecation")
