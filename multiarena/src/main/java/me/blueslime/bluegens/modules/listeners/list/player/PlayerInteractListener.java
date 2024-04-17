@@ -13,11 +13,16 @@ import me.blueslime.utilitiesapi.commands.sender.Sender;
 import me.blueslime.utilitiesapi.item.ItemWrapper;
 import me.blueslime.utilitiesapi.text.TextReplacer;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Skull;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
+import java.lang.reflect.Field;
 import java.util.Locale;
 
 public class PlayerInteractListener extends PluginListener {
@@ -202,7 +207,24 @@ public class PlayerInteractListener extends PluginListener {
             }
             plugin.getEconomy().withdrawPlayer(player, nextLevelPrice);
             plugin.getModule(Generators.class).upgradeGenerator(generator, player, currentSpawnRate, nextLevel);
+
+            ItemStack itemStack = nextLevel.getItemStack();
+
+            block.setType(itemStack.getType());
+
+            BlockState state = block.getState();
+
+            if (state instanceof SkullMeta) {
+                SkullMeta itemMeta = (SkullMeta)itemStack.getItemMeta();
+                Skull blockMeta = (Skull) state;
+
+                applyTexture(blockMeta, itemMeta);
+
+                blockMeta.update(true, true);
+            }
+
             callEvent(new GeneratorUpgradeEvent(generator, player));
+
             Sender.build(player).send(
                 plugin.getMessages(),
                 "messages.generator-updated",
@@ -212,6 +234,29 @@ public class PlayerInteractListener extends PluginListener {
                     .replace("<player_name>", player.getName())
                     .replace("<player_uuid>", player.getUniqueId().toString())
             );
+        }
+    }
+
+    private void applyTexture(Skull skull, SkullMeta skullMeta) {
+        try {
+            Field profileField = skull.getClass().getDeclaredField("profile");
+            profileField.setAccessible(true);
+
+            Object profile = getProfile(skullMeta);
+            if (profile != null) {
+                profileField.set(skull, profile);
+            }
+        } catch (Exception ignored) {}
+    }
+
+    @SuppressWarnings("JavaReflectionMemberAccess")
+    private Object getProfile(SkullMeta skullMeta) {
+        try {
+            Field profileField = SkullMeta.class.getDeclaredField("profile");
+            profileField.setAccessible(true);
+            return profileField.get(skullMeta);
+        } catch (Exception e) {
+            return null;
         }
     }
 }
