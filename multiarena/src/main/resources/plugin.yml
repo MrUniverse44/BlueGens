@@ -3,6 +3,9 @@ version: ${project.version}
 main: me.blueslime.bluegens.BlueGens
 api-version: 1.13
 authors: [ JustJustin ]
+softdepend:
+  - PlaceholderAPI
+  - Vault
 author: JustJustin
 description: ${project.description}
 commands:

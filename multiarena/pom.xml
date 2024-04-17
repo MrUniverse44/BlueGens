@@ -25,6 +25,7 @@
     </properties>
 
     <build>
+        <finalName>BlueGens-${project.parent.version}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
