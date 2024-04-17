@@ -264,13 +264,23 @@ public class Generators extends PluginModule {
 
         callEvent(new GeneratorPlaceEvent(generator, player));
 
+        String displayName = level.getDisplayName();
+
         Sender.build(player).send(
             player,
             plugin.getMessages(),
             "messages.placed-generator",
             "&aPlaced a new generator. (<current>/<max>)",
             TextReplacer.builder()
-                .replace("<current>", current)
+                .replace("<current>", current + 1)
+                .replace("<time>", level.getSpawnRate())
+                .replace("<generator_time>", level.getSpawnRate())
+                .replace("<generator_displayname>", displayName)
+                .replace("<generator_display_name>", displayName)
+                .replace("<displayname>", displayName)
+                .replace("<display_name>", displayName)
+                .replace("<upgrade>", level.getNextCost())
+                .replace("<generator_upgrade>", level.getNextCost())
                 .replace("<max>", max)
         );
         return false;
