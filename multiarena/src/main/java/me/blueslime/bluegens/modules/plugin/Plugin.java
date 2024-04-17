@@ -4,6 +4,7 @@ import me.blueslime.bluegens.BlueGens;
 import me.blueslime.bluegens.modules.PluginModule;
 import me.blueslime.bluegens.modules.generators.generator.Generator;
 import me.blueslime.bluegens.modules.storage.player.GenPlayer;
+import me.blueslime.bluegens.modules.utils.file.FileUtilities;
 import me.blueslime.utilitiesapi.reflection.utils.storage.PluginStorage;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -84,10 +85,16 @@ public abstract class Plugin extends JavaPlugin {
     }
 
     private FileConfiguration loadConfiguration(File folder, String child) {
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
         File file = new File(folder, child);
+
         if (file.exists()) {
             return YamlConfiguration.loadConfiguration(file);
         } else {
+            FileUtilities.createFile(file, child);
             try {
                 if (file.createNewFile()) {
                     return YamlConfiguration.loadConfiguration(file);

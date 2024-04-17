@@ -1,5 +1,8 @@
 package me.blueslime.bluegens.modules.utils.file;
 
+import me.blueslime.bluegens.BlueGens;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,10 +10,19 @@ import java.nio.file.Files;
 
 public class FileUtilities {
     public static InputStream build(String location) {
+        InputStream stream;
+
         if (!location.startsWith("/")) {
-            return FileUtilities.class.getResourceAsStream("/" + location);
+            stream = FileUtilities.class.getResourceAsStream("/" + location);
+        } else {
+            stream = FileUtilities.class.getResourceAsStream(location);
         }
-        return FileUtilities.class.getResourceAsStream(location);
+
+        if (stream == null) {
+            stream = JavaPlugin.getPlugin(BlueGens.class).getResource(location);
+        }
+
+        return stream;
     }
 
     public static void createFile(File file, InputStream resource) {
