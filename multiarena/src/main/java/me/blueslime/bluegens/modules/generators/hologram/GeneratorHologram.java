@@ -34,10 +34,10 @@ public class GeneratorHologram {
             Location lineLocation = location.clone();
 
             if (amount == 0) {
-                double best = (HOLOGRAM_DISTANCE + 0.1) * size;
-                lineLocation.setY(best);
+                double best = (HOLOGRAM_DISTANCE) * size;
+                lineLocation.setY(lineLocation.getY() + best);
             } else {
-                double max = (HOLOGRAM_DISTANCE + 0.2) * size;
+                double max = lineLocation.getY() + (HOLOGRAM_DISTANCE) * size;
                 double remover = HOLOGRAM_DISTANCE * amount;
                 lineLocation.setY(max - remover);
             }
