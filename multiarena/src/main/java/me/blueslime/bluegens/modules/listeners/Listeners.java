@@ -50,6 +50,8 @@ public class Listeners extends PluginModule {
 
     @Override
     public void reload() {
-
+        for (PluginListener listener : listenerMap.values()) {
+            listener.reload();
+        }
     }
 }

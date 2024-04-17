@@ -35,6 +35,9 @@ public class GenTask extends Task {
             }
 
             if (generator.isCorrupted()) {
+                if (!plugin.getModule(Generators.class).getHologramMap().containsKey(generator.getCode())) {
+                    plugin.getModule(Generators.class).createHologram(generator);
+                }
                 continue;
             }
 

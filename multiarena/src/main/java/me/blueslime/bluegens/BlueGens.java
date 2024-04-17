@@ -1,5 +1,6 @@
 package me.blueslime.bluegens;
 
+import me.blueslime.bluegens.modules.PluginModule;
 import me.blueslime.bluegens.modules.commands.Command;
 import me.blueslime.bluegens.modules.generators.Generators;
 import me.blueslime.bluegens.modules.listeners.Listeners;
@@ -7,6 +8,7 @@ import me.blueslime.bluegens.modules.metrics.Metrics;
 import me.blueslime.bluegens.modules.plugin.Plugin;
 import me.blueslime.bluegens.modules.tasks.Tasks;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public final class BlueGens extends Plugin {
@@ -30,6 +32,11 @@ public final class BlueGens extends Plugin {
         new Metrics(this, 21631);
     }
 
+    @EventHandler
+    public void onDisable() {
+        shutdown();
+    }
+
     @Override
     public void registerModules() {
         registerModule(
@@ -41,7 +48,9 @@ public final class BlueGens extends Plugin {
 
     @Override
     public void reload() {
-
+        for (PluginModule module : getModules().values()) {
+            module.reload();
+        }
     }
 
     public Economy getEconomy() {

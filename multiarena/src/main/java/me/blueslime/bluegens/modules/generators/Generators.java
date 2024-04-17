@@ -154,6 +154,10 @@ public class Generators extends PluginModule {
             (k, v) -> v.silencedCancellation()
         );
 
+        hologramMap.forEach(
+            (k, v) -> v.remove()
+        );
+
         taskMap.clear();
     }
 
