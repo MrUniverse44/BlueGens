@@ -72,7 +72,7 @@ public class Generators extends PluginModule {
             (k, v) -> {
                 int spawnRate = k * 20;
 
-                v.runTaskTimer(spawnRate, 0L);
+                v.runTaskTimer(0L, spawnRate);
                 plugin.getLogger().info("Created task for generators with interval of " + k + " seconds (" + spawnRate + ")");
             }
         );
