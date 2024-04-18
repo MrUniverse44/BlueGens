@@ -135,4 +135,8 @@ public class Generator {
     public String getOwnerId() {
         return owner;
     }
+
+    public Location getParticleLocation() {
+        return coordinate.getParticleLocation();
+    }
 }

@@ -26,3 +26,42 @@ settings:
     # and give the permission 'bluegens.max.generators.<key>'
     # Permission for this default extra-key: bluegens.max.generators.admin
     admin: 15
+#
+# NOTE: You can disable it with a [] value, example: 'on-place: []'
+# Particle List depends on your minecraft version:
+#   Latest: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html
+#
+# Particle system
+particles:
+  on-place:
+    - "VILLAGER_HAPPY"
+  on-remove:
+    - "FIREWORKS_SPARK"
+  on-upgrade:
+    - "VILLAGER_HAPPY"
+  on-corrupt:
+    - "FIREWORKS_SPARK"
+  on-repair:
+    - "VILLAGER_HAPPY"
+#
+# NOTE: You can disable it with a [] value, example: 'on-place: []'
+# Sound List depends on your minecraft version:
+#   Latest: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+#
+# You can add custom volume or pitch with these formats
+#  - "SOUND NAME" #<- ONLY SOUND
+#  - "SOUND NAME, VOLUME" #<- VOLUME IN FLOAT
+#  - "SOUND NAME, VOLUME, PITCH" #<- VOLUME AND PITCH IN FLOAT
+#
+# Sound system
+sounds:
+  on-place:
+    - "BLOCK_ANVIL_PLACE"
+  on-remove:
+    - "ENTITY_EGG_THROW"
+  on-upgrade:
+    - "ENTITY_FIREWORK_ROCKET_BLAST"
+  on-corrupt:
+    - "ENTITY_WITHER_SPAWN"
+  on-repair:
+    - "BLOCK_ANVIL_USE"

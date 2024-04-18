@@ -8,7 +8,6 @@ import me.blueslime.bluegens.modules.metrics.Metrics;
 import me.blueslime.bluegens.modules.plugin.Plugin;
 import me.blueslime.bluegens.modules.tasks.Tasks;
 import net.milkbowl.vault.economy.Economy;
-import org.bukkit.event.EventHandler;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public final class BlueGens extends Plugin {
@@ -32,7 +31,7 @@ public final class BlueGens extends Plugin {
         new Metrics(this, 21631);
     }
 
-    @EventHandler
+    @Override
     public void onDisable() {
         shutdown();
     }
@@ -48,6 +47,8 @@ public final class BlueGens extends Plugin {
 
     @Override
     public void reload() {
+        build();
+
         for (PluginModule module : getModules().values()) {
             module.reload();
         }

@@ -7,6 +7,7 @@ import me.blueslime.bluegens.modules.generators.generator.Generator;
 import me.blueslime.bluegens.modules.generators.level.GeneratorLevel;
 import me.blueslime.bluegens.modules.listeners.api.GeneratorCorruptEvent;
 import me.blueslime.bluegens.modules.tasks.task.Task;
+import me.blueslime.bluegens.modules.utils.generator.GeneratorUtils;
 import me.blueslime.bluegens.modules.utils.list.ReturnableArrayList;
 import me.blueslime.utilitiesapi.item.ItemWrapper;
 import me.blueslime.utilitiesapi.text.TextReplacer;

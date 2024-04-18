@@ -95,6 +95,25 @@ public class Coordinate {
         );
     }
 
+    public Location getParticleLocation() {
+        if (world == null) {
+            return null;
+        }
+
+        World world = Bukkit.getWorld(this.world);
+
+        if (world == null) {
+            return null;
+        }
+
+        return new Location(
+            world,
+            x + 0.5,
+            y + 0.8,
+            z + 0.5
+        );
+    }
+
     public boolean compare(Block block) {
         Location location = block.getLocation();
 

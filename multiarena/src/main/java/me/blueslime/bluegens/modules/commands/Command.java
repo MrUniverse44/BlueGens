@@ -35,6 +35,13 @@ public class Command extends SimpleCommand<BlueGens> {
             );
             return;
         }
+        if (arguments[0].equalsIgnoreCase("reload")) {
+            if (sender.hasPermission("bluegens.reload")) {
+                getPlugin().reload();
+                sender.send("&aPlugin reloaded");
+                return;
+            }
+        }
         if (arguments[0].equalsIgnoreCase("buy")) {
             Player targetPlayer;
             if (arguments.length >= 2) {
