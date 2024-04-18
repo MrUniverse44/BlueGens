@@ -15,7 +15,9 @@ public class GeneratorCorruptEvent extends Event {
         this.generator = generator;
         this.owner = owner;
     }
-
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
     @Override
     public @NotNull HandlerList getHandlers() {
         return handlerList;

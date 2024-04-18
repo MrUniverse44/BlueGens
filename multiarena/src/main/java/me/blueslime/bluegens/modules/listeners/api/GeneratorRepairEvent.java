@@ -16,6 +16,10 @@ public class GeneratorRepairEvent extends Event {
         this.owner = owner;
     }
 
+
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
     @Override
     public @NotNull HandlerList getHandlers() {
         return handlerList;
