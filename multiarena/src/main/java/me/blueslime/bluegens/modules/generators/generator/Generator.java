@@ -139,4 +139,8 @@ public class Generator {
     public Location getParticleLocation() {
         return coordinate.getParticleLocation();
     }
+
+    public Location getDropLocation() {
+        return coordinate.getDropLocation();
+    }
 }

@@ -11,6 +11,7 @@ import me.blueslime.bluegens.modules.utils.list.ReturnableArrayList;
 import me.blueslime.utilitiesapi.item.ItemWrapper;
 import me.blueslime.utilitiesapi.text.TextReplacer;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Item;
@@ -31,8 +32,9 @@ public class GenTask extends Task {
     public void run() {
         for (Generator generator : generators) {
             Block block = generator.getUpperBlock();
+            Location location = generator.getDropLocation();
 
-            if (block == null) {
+            if (block == null || location == null || location.getWorld() == null) {
                 continue;
             }
 
@@ -127,7 +129,7 @@ public class GenTask extends Task {
                     );
 
                     Item item = world.dropItem(
-                        block.getLocation(),
+                        location,
                         wrapper.getItem()
                     );
                     item.setVelocity(new Vector(0, 0, 0));

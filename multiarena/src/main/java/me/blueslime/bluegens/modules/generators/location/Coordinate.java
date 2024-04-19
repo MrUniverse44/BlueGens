@@ -165,4 +165,23 @@ public class Coordinate {
     public String getCode() {
         return world + "-" + x + "-" + y + "-" + z + "-generator";
     }
+
+    public Location getDropLocation() {
+        if (world == null) {
+            return null;
+        }
+
+        World world = Bukkit.getWorld(this.world);
+
+        if (world == null) {
+            return null;
+        }
+
+        return new Location(
+            world,
+            x + 0.5,
+            y + 1.5,
+            z + 0.5
+        );
+    }
 }
