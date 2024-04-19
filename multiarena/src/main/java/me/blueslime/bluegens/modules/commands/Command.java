@@ -41,6 +41,13 @@ public class Command extends SimpleCommand<BlueGens> {
                 sender.send("&aPlugin reloaded");
                 return;
             }
+            sender.send(
+                getPlugin().getMessages(),
+                "no-permission:",
+                "&cYou need permission &7<permission>&c to do this",
+                TextReplacer.builder().replace("<permission>", "bluegens.sell")
+            );
+            return;
         }
         if (arguments[0].equalsIgnoreCase("buy")) {
             Player targetPlayer;
@@ -69,6 +76,12 @@ public class Command extends SimpleCommand<BlueGens> {
                     if (sender.isPlayer()) {
                         targetPlayer = sender.toPlayer();
                     } else {
+                        sender.send(
+                            getPlugin().getMessages(),
+                            "command.no-permission",
+                            "&cYou need permission &7<permission>&c to do this",
+                            TextReplacer.builder().replace("<permission>", "bluegens.sell")
+                        );
                         return;
                     }
                 }

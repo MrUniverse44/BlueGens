@@ -1,0 +1,38 @@
+# Sell command configuration.
+
+# With this option you will toggle this feature
+# This is the unique way to sell drops
+# If you want to use another sell system
+# The unique way is using our custom drop String NBT: 'bluegens-drop-price'
+# And you need to parse it to Integer
+#
+# I recommend to have this option enabled because it can be compatible with others plugins (this depends on other developers)
+enabled: true
+
+# Action List:
+#   '<actionbar> &aExample' - 'actionbar: &aExample' - '[actionbar] &aExample'
+#   '<console> kill %player_name%' - 'console: say hello world!' - '[console] eco give %player_name% 1'
+#   '<message> &aHello %player_name%' - 'message: &aHello %player_name%' - '[message] &aHello %player_name%'
+#   '<titles> &aHello!<subtitle>&6%player_name%' - 'titles: &aHello!<subtitle>&6%player_name%' - '[titles] &aHello!<subtitle>&6%player_name%'
+#
+# These actions are executed when a player uses /sell command successfully.
+# Extra variables are with PlaceholderAPI
+# Internal variables: <player_name>, <player_displayname>, <total>, <total_formatted>
+actions:
+  - '<titles>&a&lSold!<subtitle>&eYou win <total_formatted>'
+
+# You can add more items depending on what you want
+# but if you want to blacklist specified heads or items with specified data
+# The unique way is using our Dev API with our custom event: me.blueslime.bluegens.listeners.api.SellEvent
+#
+# If you want to add more items just use this format:
+#   (ITEM ID DEPENDING ON YOUR VERSION): (PRICE IN DOUBLE)
+# Example:
+#   BEDROCK: 100.0
+#
+# Item List:
+#   Latest: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+#
+# Drop Prices will be calculated automatically, drops don't need to stay here.
+worth:
+  DIAMOND_BLOCK: 50.5

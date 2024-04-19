@@ -25,6 +25,7 @@ public abstract class Plugin extends JavaPlugin {
     private FileConfiguration generators;
     private FileConfiguration settings;
     private FileConfiguration messages;
+    private FileConfiguration sell;
 
     protected void initialize(BlueGens plugin) {
         build();
@@ -38,6 +39,7 @@ public abstract class Plugin extends JavaPlugin {
         generators = loadConfiguration(getDataFolder(), "generators.yml");
         settings = loadConfiguration(getDataFolder(), "settings.yml");
         messages = loadConfiguration(getDataFolder(), "messages.yml");
+        sell = loadConfiguration(getDataFolder(), "sell.yml");
     }
 
     public abstract void registerModules();
@@ -139,6 +141,10 @@ public abstract class Plugin extends JavaPlugin {
             }
         }
         return null;
+    }
+
+    public FileConfiguration getSell() {
+        return sell;
     }
 
     public PluginStorage<UUID, GenPlayer> getPlayers() {

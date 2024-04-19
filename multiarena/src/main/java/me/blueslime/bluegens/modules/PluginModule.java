@@ -73,6 +73,10 @@ public abstract class PluginModule {
         return plugin.getGamePlayer(player);
     }
 
+    public FileConfiguration getSell() {
+        return plugin.getSell();
+    }
+
     public Server getServer() {
         return plugin.getServer();
     }

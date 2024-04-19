@@ -48,6 +48,7 @@ command:
     - " "
   no-enough-money: "&cCan't buy a generator because you don't have enough money."
   no-player-found: "&cThis player is not online."
+  no-permission: "&cYou need permission &7<permission>&c to do this"
 hologram:
   corrupt:
     enabled: true

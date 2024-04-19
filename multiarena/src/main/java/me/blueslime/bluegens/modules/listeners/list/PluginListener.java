@@ -49,6 +49,9 @@ public abstract class PluginListener implements Listener {
     public FileConfiguration getSettings() {
         return plugin.getSettings();
     }
+    public FileConfiguration getSell() {
+        return plugin.getSell();
+    }
 
     public FileConfiguration getMessages() {
         return plugin.getMessages();

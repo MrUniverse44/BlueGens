@@ -1,11 +1,13 @@
 package me.blueslime.bluegens;
 
 import me.blueslime.bluegens.modules.PluginModule;
+import me.blueslime.bluegens.modules.actions.Actions;
 import me.blueslime.bluegens.modules.commands.Command;
 import me.blueslime.bluegens.modules.generators.Generators;
 import me.blueslime.bluegens.modules.listeners.Listeners;
 import me.blueslime.bluegens.modules.metrics.Metrics;
 import me.blueslime.bluegens.modules.plugin.Plugin;
+import me.blueslime.bluegens.modules.sells.Sells;
 import me.blueslime.bluegens.modules.tasks.Tasks;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -41,6 +43,8 @@ public final class BlueGens extends Plugin {
         registerModule(
             new Generators(this),
             new Listeners(this),
+            new Actions(this),
+            new Sells(this),
             new Tasks(this)
         );
     }
