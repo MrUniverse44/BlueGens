@@ -7,6 +7,7 @@ import me.blueslime.bluegens.modules.utils.PluginUtilities;
 import me.blueslime.utilitiesapi.tools.PluginTools;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +38,11 @@ public class GeneratorUtils {
                     amount = Integer.parseInt(split[1]);
                     particleName = split[0];
                 } else {
-                    amount = PluginTools.isNumber(split[0]) ? Integer.parseInt(split[0]) : 10;
+                    amount = PluginTools.isNumber(split[0]) ? Integer.parseInt(split[0]) : 25;
                     particleName = PluginTools.isNumber(split[0]) ? split[1] : split[0];
                 }
             } else {
-                amount = 10;
+                amount = 25;
                 particleName = split[0];
             }
 
@@ -68,9 +69,15 @@ public class GeneratorUtils {
             return;
         }
 
-        Location location = generator.getParticleLocation();
+        Block block = generator.getUpperBlock();
 
-        if (location == null || location.getWorld() == null) {
+        if (block == null) {
+            return;
+        }
+
+        Location location = block.getLocation();
+
+        if (location.getWorld() == null) {
             return;
         }
 
