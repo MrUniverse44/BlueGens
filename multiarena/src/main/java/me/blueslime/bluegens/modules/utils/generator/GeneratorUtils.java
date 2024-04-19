@@ -4,10 +4,12 @@ import me.blueslime.bluegens.modules.generators.generator.Generator;
 import me.blueslime.bluegens.modules.generators.particle.GeneratorParticle;
 import me.blueslime.bluegens.modules.generators.sound.GeneratorSound;
 import me.blueslime.bluegens.modules.utils.PluginUtilities;
+import me.blueslime.utilitiesapi.item.nbt.ItemNBT;
 import me.blueslime.utilitiesapi.tools.PluginTools;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,5 +128,15 @@ public class GeneratorUtils {
                 soundTask.getPitch()
             );
         }
+    }
+
+    public static boolean isDrop(ItemStack itemStack) {
+        String nbt = ItemNBT.fromString(itemStack, "bluegens-drop-item");
+
+        if (nbt == null || nbt.isEmpty()) {
+            return false;
+        }
+
+        return nbt.equalsIgnoreCase("true");
     }
 }

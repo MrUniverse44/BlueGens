@@ -1,5 +1,8 @@
 package me.blueslime.bluegens.modules.utils;
 
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
 public class PluginUtilities {
     public static boolean isFloat(String floatString) {
         try {
@@ -9,6 +12,11 @@ public class PluginUtilities {
             return false;
         }
     }
+
+    public static boolean isAirOrNull(ItemStack item){
+        return item == null || item.getType().equals(Material.AIR);
+    }
+
     public static class FloatUtil {
         public static float converter(double number) {
             return (float) (number / 20.D);

@@ -4,10 +4,13 @@ import me.blueslime.bluegens.BlueGens;
 import me.blueslime.bluegens.modules.PluginModule;
 import me.blueslime.bluegens.modules.listeners.list.PluginListener;
 import me.blueslime.bluegens.modules.listeners.list.block.BlockBreakListener;
+import me.blueslime.bluegens.modules.listeners.list.block.BlockDispenseArmorListener;
 import me.blueslime.bluegens.modules.listeners.list.block.BlockPlaceListener;
 import me.blueslime.bluegens.modules.listeners.list.custom.SoundParticleListener;
 import me.blueslime.bluegens.modules.listeners.list.entity.EntityDamageListener;
 import me.blueslime.bluegens.modules.listeners.list.entity.EntityExplodeListener;
+import me.blueslime.bluegens.modules.listeners.list.inventory.InventoryClickListener;
+import me.blueslime.bluegens.modules.listeners.list.inventory.InventoryDragListener;
 import me.blueslime.bluegens.modules.listeners.list.player.PlayerInteractListener;
 
 import java.util.Map;
@@ -37,7 +40,10 @@ public class Listeners extends PluginModule {
             new EntityDamageListener(plugin),
             new EntityExplodeListener(plugin),
             new PlayerInteractListener(plugin),
-            new SoundParticleListener(plugin)
+            new SoundParticleListener(plugin),
+            new InventoryDragListener(plugin),
+            new InventoryClickListener(plugin),
+            new BlockDispenseArmorListener(plugin)
         );
 
         for (PluginListener listener : listenerMap.values()) {

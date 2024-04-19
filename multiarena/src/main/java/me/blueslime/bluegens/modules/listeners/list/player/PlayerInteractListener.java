@@ -4,10 +4,13 @@ import me.blueslime.bluegens.BlueGens;
 import me.blueslime.bluegens.modules.generators.Generators;
 import me.blueslime.bluegens.modules.generators.generator.Generator;
 import me.blueslime.bluegens.modules.generators.level.GeneratorLevel;
+import me.blueslime.bluegens.modules.listeners.api.BlueArmorPart;
 import me.blueslime.bluegens.modules.listeners.api.GeneratorRepairEvent;
 import me.blueslime.bluegens.modules.listeners.api.GeneratorUpgradeEvent;
 import me.blueslime.bluegens.modules.listeners.list.PluginListener;
 import me.blueslime.bluegens.modules.storage.player.GenPlayer;
+import me.blueslime.bluegens.modules.utils.PluginUtilities;
+import me.blueslime.bluegens.modules.utils.generator.GeneratorUtils;
 import me.blueslime.bluegens.modules.utils.list.ReturnableArrayList;
 import me.blueslime.bluegens.modules.utils.player.PlayerUtilities;
 import me.blueslime.bluegens.modules.utils.reflect.PluginReflect;
@@ -79,6 +82,7 @@ public class PlayerInteractListener extends PluginListener {
                 return;
             }
             event.setCancelled(true);
+            player.updateInventory();
 
             if (!generator.isOwner(genPlayer)) {
                 Sender.build(player).send(
@@ -300,6 +304,36 @@ public class PlayerInteractListener extends PluginListener {
                     .replace("<player_name>", player.getName())
                     .replace("<player_uuid>", player.getUniqueId().toString())
             );
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onArmorCheck(PlayerInteractEvent event) {
+        if (PluginReflect.isCancelled(event)) {
+            return;
+        }
+
+        String action = event.getAction().toString().toLowerCase(Locale.ENGLISH);
+
+        if (action.contains("physical")) {
+            return;
+        }
+
+        if (action.contains("right")) {
+            int armorPart = BlueArmorPart.ofItem(event.getItem());
+            if (armorPart != -1) {
+                if (
+                    armorPart == 5 && PluginUtilities.isAirOrNull(event.getPlayer().getInventory().getHelmet()) ||
+                    armorPart == 6 && PluginUtilities.isAirOrNull(event.getPlayer().getInventory().getChestplate()) ||
+                    armorPart == 7 && PluginUtilities.isAirOrNull(event.getPlayer().getInventory().getLeggings()) ||
+                    armorPart == 8 && PluginUtilities.isAirOrNull(event.getPlayer().getInventory().getBoots())
+                ) {
+                    if (GeneratorUtils.isDrop(event.getItem())) {
+                        event.setCancelled(true);
+                        event.getPlayer().updateInventory();
+                    }
+                }
+            }
         }
     }
 
