@@ -13,6 +13,8 @@ import me.blueslime.utilitiesapi.text.TextReplacer;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Item;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,10 +126,11 @@ public class GenTask extends Task {
                         )
                     );
 
-                    world.dropItem(
+                    Item item = world.dropItem(
                         block.getLocation(),
                         wrapper.getItem()
                     );
+                    item.setVelocity(new Vector(0, 0, 0));
                 }
             }
         }
