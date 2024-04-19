@@ -3,6 +3,7 @@ package me.blueslime.bluegens.modules.sells;
 import me.blueslime.bluegens.BlueGens;
 import me.blueslime.bluegens.modules.PluginModule;
 import me.blueslime.bluegens.modules.listeners.api.SellEvent;
+import me.blueslime.bluegens.modules.utils.PluginUtilities;
 import me.blueslime.utilitiesapi.item.nbt.ItemNBT;
 import me.blueslime.utilitiesapi.tools.PluginTools;
 import org.bukkit.entity.Player;
@@ -35,12 +36,18 @@ public class Sells extends PluginModule {
 
         for (ItemStack item : player.getInventory().getStorageContents()) {
 
+            if (PluginUtilities.isAirOrNull(item)) {
+                continue;
+            }
+
             String dropNBT = ItemNBT.fromString(item, "bluegens-drop-price");
 
             if (dropNBT != null && !dropNBT.isEmpty()) {
-                if (PluginTools.isNumber(dropNBT)) {
-                    int price = Integer.parseInt(dropNBT);
-                    int total = price * item.getAmount();
+                plugin.getLogger().info("Possible item shop: " + dropNBT);
+                if (PluginTools.isNumber(dropNBT) || PluginUtilities.isDouble(dropNBT)) {
+                    plugin.getLogger().info("Added item with NBT");
+                    double price = PluginTools.isNumber(dropNBT) ? Integer.parseInt(dropNBT) : Double.parseDouble(dropNBT);
+                    int total = (int)price * item.getAmount();
                     PossibleItemSell possibleItem = new PossibleItemSell(item, total);
                     possibleItemSellList.add(possibleItem);
                     continue;
@@ -74,6 +81,7 @@ public class Sells extends PluginModule {
             );
 
             result.addValue(possibleItemSell.getWinningPrice());
+            result.addAmount(possibleItemSell.getAmount());
         }
 
         return result;

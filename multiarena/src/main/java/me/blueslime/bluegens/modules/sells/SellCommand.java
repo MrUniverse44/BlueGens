@@ -45,6 +45,8 @@ public class SellCommand extends SimpleCommand<BlueGens> {
                 .replace("<player_name>", player.getName())
                 .replace("<player_displayname>", player.getDisplayName())
                 .replace("<total_formatted>", formatted)
+                .replace("<total_items>", result.getItemAmount())
+                .replace("<items>", result.getItemAmount())
                 .replace("<total>", String.valueOf(result));
 
             List<String> actions = new ArrayList<>();

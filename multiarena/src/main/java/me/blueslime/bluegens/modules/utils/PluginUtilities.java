@@ -17,6 +17,15 @@ public class PluginUtilities {
         return item == null || item.getType().equals(Material.AIR);
     }
 
+    public static boolean isDouble(String doubleValue) {
+        try {
+            Double.parseDouble(doubleValue);
+            return true;
+        } catch (NumberFormatException ignored) {
+            return false;
+        }
+    }
+
     public static class FloatUtil {
         public static float converter(double number) {
             return (float) (number / 20.D);

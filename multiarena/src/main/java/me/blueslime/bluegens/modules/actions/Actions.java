@@ -71,7 +71,7 @@ public class Actions extends PluginModule {
     }
 
     public void execute(List<String> actions, Player player) {
-        List<Action> entireList = new ReturnableArrayList<Action>();
+        List<Action> entireList = new ReturnableArrayList<>();
 
         entireList.addAll(externalActions);
         entireList.addAll(action);
