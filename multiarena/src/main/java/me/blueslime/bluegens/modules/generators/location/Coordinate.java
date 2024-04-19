@@ -109,7 +109,7 @@ public class Coordinate {
         return new Location(
             world,
             x + 0.5,
-            y + 0.8,
+            y + 1,
             z + 0.5
         );
     }

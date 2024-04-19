@@ -37,11 +37,11 @@ public class GeneratorUtils {
                     amount = Integer.parseInt(split[1]);
                     particleName = split[0];
                 } else {
-                    amount = PluginTools.isNumber(split[0]) ? Integer.parseInt(split[0]) : 3;
+                    amount = PluginTools.isNumber(split[0]) ? Integer.parseInt(split[0]) : 10;
                     particleName = PluginTools.isNumber(split[0]) ? split[1] : split[0];
                 }
             } else {
-                amount = 3;
+                amount = 10;
                 particleName = split[0];
             }
 

@@ -29,25 +29,30 @@ public class SoundParticleListener extends PluginListener {
     @EventHandler
     public void on(GeneratorCorruptEvent event) {
         GeneratorUtils.spawnParticles(event.getCurrentGenerator(), plugin.getSettings().getStringList("particles.on-corrupt"));
+        GeneratorUtils.playSounds(event.getCurrentGenerator(), plugin.getSettings().getStringList("sounds.on-corrupt"));
     }
 
     @EventHandler
     public void on(GeneratorPlaceEvent event) {
         GeneratorUtils.spawnParticles(event.getCurrentGenerator(), plugin.getSettings().getStringList("particles.on-place"));
+        GeneratorUtils.playSounds(event.getCurrentGenerator(), plugin.getSettings().getStringList("sounds.on-place"));
     }
 
     @EventHandler
     public void on(GeneratorBreakEvent event) {
         GeneratorUtils.spawnParticles(event.getCurrentGenerator(), plugin.getSettings().getStringList("particles.on-remove"));
+        GeneratorUtils.playSounds(event.getCurrentGenerator(), plugin.getSettings().getStringList("sounds.on-remove"));
     }
 
     @EventHandler
     public void on(GeneratorRepairEvent event) {
         GeneratorUtils.spawnParticles(event.getCurrentGenerator(), plugin.getSettings().getStringList("particles.on-repair"));
+        GeneratorUtils.playSounds(event.getCurrentGenerator(), plugin.getSettings().getStringList("sounds.on-repair"));
     }
 
     @EventHandler
     public void on(GeneratorUpgradeEvent event) {
         GeneratorUtils.spawnParticles(event.getCurrentGenerator(), plugin.getSettings().getStringList("particles.on-upgrade"));
+        GeneratorUtils.playSounds(event.getCurrentGenerator(), plugin.getSettings().getStringList("sounds.on-upgrade"));
     }
 }
