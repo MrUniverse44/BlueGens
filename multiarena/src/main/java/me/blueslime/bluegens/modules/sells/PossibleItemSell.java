@@ -24,7 +24,7 @@ public class PossibleItemSell {
     }
 
     public boolean isDisabled() {
-        return item != null;
+        return item == null;
     }
 
     public ItemStack getItem() {

@@ -43,9 +43,7 @@ public class Sells extends PluginModule {
             String dropNBT = ItemNBT.fromString(item, "bluegens-drop-price");
 
             if (dropNBT != null && !dropNBT.isEmpty()) {
-                plugin.getLogger().info("Possible item shop: " + dropNBT);
                 if (PluginTools.isNumber(dropNBT) || PluginUtilities.isDouble(dropNBT)) {
-                    plugin.getLogger().info("Added item with NBT");
                     double price = PluginTools.isNumber(dropNBT) ? Integer.parseInt(dropNBT) : Double.parseDouble(dropNBT);
                     int total = (int)price * item.getAmount();
                     PossibleItemSell possibleItem = new PossibleItemSell(item, total);
@@ -74,7 +72,7 @@ public class Sells extends PluginModule {
                 continue;
             }
 
-            ItemStack item = possibleItemSell.getItem().clone();
+            ItemStack item = possibleItemSell.getItem();
 
             player.getInventory().removeItem(
                 item

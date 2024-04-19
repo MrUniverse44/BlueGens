@@ -6,17 +6,16 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class SellEvent extends Event {
-    private List<PossibleItemSell> sellList = new ArrayList<>();
+    private final List<PossibleItemSell> sellList;
     private final Player player;
     private static final HandlerList handlerList = new HandlerList();
 
     public SellEvent(List<PossibleItemSell> sellList, Player player) {
-        this.sellList.addAll(sellList);
+        this.sellList = sellList;
         this.player = player;
     }
 
@@ -25,7 +24,8 @@ public class SellEvent extends Event {
     }
 
     public void setSellList(List<PossibleItemSell> sellList) {
-        this.sellList = sellList;
+        this.sellList.clear();
+        this.sellList.addAll(sellList);
     }
 
     /**
