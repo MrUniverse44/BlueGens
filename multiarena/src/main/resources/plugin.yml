@@ -11,3 +11,5 @@ description: ${project.description}
 commands:
   bluegens:
     description: Main Command of the plugin
+  sell:
+    description: Sell command
