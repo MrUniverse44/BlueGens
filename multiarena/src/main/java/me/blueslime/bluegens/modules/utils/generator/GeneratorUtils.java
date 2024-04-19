@@ -131,6 +131,10 @@ public class GeneratorUtils {
     }
 
     public static boolean isDrop(ItemStack itemStack) {
+        if (itemStack == null) {
+            return false;
+        }
+
         String nbt = ItemNBT.fromString(itemStack, "bluegens-drop-item");
 
         if (nbt == null || nbt.isEmpty()) {

@@ -4,6 +4,7 @@ import me.blueslime.bluegens.BlueGens;
 import me.blueslime.bluegens.modules.generators.Generators;
 import me.blueslime.bluegens.modules.generators.level.GeneratorLevel;
 import me.blueslime.bluegens.modules.listeners.list.PluginListener;
+import me.blueslime.bluegens.modules.utils.generator.GeneratorUtils;
 import me.blueslime.bluegens.modules.utils.reflect.PluginReflect;
 import me.blueslime.utilitiesapi.commands.sender.Sender;
 import me.blueslime.utilitiesapi.item.nbt.ItemNBT;
@@ -44,6 +45,11 @@ public class BlockPlaceListener extends PluginListener {
         ItemStack item = PluginReflect.getItemInHand(player);
 
         if (PluginReflect.isItemAir(item)) {
+            return;
+        }
+
+        if (GeneratorUtils.isDrop(item)) {
+            event.setCancelled(true);
             return;
         }
 
